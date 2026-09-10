@@ -158,7 +158,7 @@ const TOOLS = [
   {
     group: "每天經營",
     name: "30天經營導航",
-    desc: "健檢、定位、每天該做的 3 件事",
+    desc: "健檢、定位、每天 3 件事",
     icon: "compass",
     url: "https://iammegan418-design.github.io/fairy-30days/"
   },
@@ -172,14 +172,23 @@ const TOOLS = [
   {
     group: "每天經營",
     name: "仙女獲利手帳",
-    desc: "記錄營業額與成本，看見每月獲利",
+    desc: "記錄營收成本，看見每月獲利",
     icon: "book",
+    badge: "入門版・免登入就能記",
     url: "https://fairy-profit-journal.netlify.app/"
+  },
+  {
+    group: "每天經營",
+    name: "仙女小金庫",
+    desc: "進銷存加月報，一次管好",
+    icon: "vault",
+    badge: "專業版・雲端帳號同步",
+    url: "https://yucni20.github.io/FairyLittleTreasury/"
   },
   {
     group: "限時活動",
     name: "2026 中秋組合速算",
-    desc: "客人報價、團隊叫貨、加盟試算",
+    desc: "客人報價、叫貨、加盟試算",
     icon: "moon",
     url: "https://iammegan418-design.github.io/fairy-moon/",
     start: "2026-09-17",
@@ -188,9 +197,9 @@ const TOOLS = [
   {
     group: "高階夥伴專區",
     name: "仙女皇家 一級獲利",
-    desc: "利潤差、組織獎金、每月獲利曲線",
+    desc: "利潤差、組織獎金、獲利曲線",
     icon: "crown",
-    badge: "一級・皇家專用，需輸入密碼",
+    badge: "一級・皇家專用・需密碼",
     vip: true,
     url: "https://iammegan418-design.github.io/fairy-royal-profit/"
   }
@@ -202,6 +211,7 @@ const ICONS = {
   check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>',
   book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5.5A1.5 1.5 0 0 1 6.5 4H19v14H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19"/><path d="m9 13 2.5-2.5 2 2L16 10"/></svg>',
   moon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',
+  vault:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="3"/><circle cx="12" cy="12" r="3"/><path d="M12 9v.01M15 12h.01M7 19v1.5M17 19v1.5"/></svg>',
   crown:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l4 4 4-6 4 6 4-4-1.5 10h-13z"/><path d="M6.5 21h11"/></svg>',
   link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>'
 };
@@ -236,7 +246,7 @@ function render(){
         const cls=["item",has?"":"empty",st?.ended?"ended":"",t.vip?"vip":""].join(" ");
         const tag=!has?'<span class="tag over">連結準備中</span>'
                  :st?`<span class="tag ${st.cls}">${st.text}</span>`
-                 :t.badge?`<span class="tag lock">${esc(t.badge)}</span>`:"";
+                 :t.badge?`<span class="tag ${t.vip?"lock":"soon"}">${esc(t.badge)}</span>`:"";
         return `<div class="${cls}">
           <a class="open" ${has?`href="${esc(t.url)}"`:""}>
             <span class="glyph">${ICONS[t.icon]||ICONS.link}</span>
